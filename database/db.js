@@ -1,7 +1,7 @@
 const {Sequelize,DataTypes} = require("sequelize")
 
 const sequelize = new Sequelize({
-    database : "hackathon",
+    database : "hackathons",
     username : "root",
     password : "",
     host : "localhost",
@@ -19,8 +19,12 @@ sequelize.authenticate()
 
 
 const db = {}
-db.blogs = require("../models/blogModel")(sequelize, DataTypes)
-db.users = require("../models/userModel")(sequelize, DataTypes)
+db.user = require("../models/userModel") (sequelize, DataTypes)
+db.blog = require("../models/blogModel") (sequelize, DataTypes)
+
+db.user.hasMany(db.blog) //this is used to describe relations
+db.blog.belongsTo(db.user)
+
 
 //migration code
 sequelize.sync({alter: true}).then(() =>{

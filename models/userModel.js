@@ -1,15 +1,17 @@
-const makeUserTable = (sequelize, Datatypes)=>{
-const user =sequelize.define("user",{
-    username: {
-        type : Datatypes.STRING
-    },
-    email:{
-        type: Datatypes.STRING
-    },
-    password: {
-        type: Datatypes.STRING
-    }
-})
+const {DataTypes} = require("sequelize")
+
+const makeUserTable = (sequelize, DataTypes)=>{
+     const user = sequelize.define("user",{
+        fullname :{
+            type : DataTypes.STRING
+        },
+        email :{
+            type : DataTypes.STRING
+        },
+        password : {
+            type : DataTypes.STRING
+        }
+     })
 return user
 }
 

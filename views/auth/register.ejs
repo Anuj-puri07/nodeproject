@@ -180,7 +180,8 @@
     </style>
 </head>
 <body>
-    <div class="register-container">
+    <form action="/register" method="post">
+        <div class="register-container">
         <div class="register-header">
             <h2>Create Account</h2>
             <p>Join us today and get started</p>
@@ -188,8 +189,8 @@
         
         <form id="registerForm">
             <div class="form-group">
-                <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                <label for="username">Full Name</label>
+                <input type="text" id="username" name="username" placeholder="Enter your full name" required>
             </div>
             
             <div class="form-group">
@@ -201,9 +202,6 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Create a password" required>
-                <div class="password-requirements">
-                    Password must be at least 8 characters long and contain uppercase, lowercase, number, and special character.
-                </div>
                 <div id="passwordError" class="error-message"></div>
             </div>
             
@@ -213,13 +211,6 @@
                 <div id="confirmPasswordError" class="error-message"></div>
             </div>
             
-            <div class="terms-privacy">
-                <input type="checkbox" id="terms" name="terms" required>
-                <label for="terms">
-                    I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-                </label>
-            </div>
-            
             <button type="submit" class="register-btn">Create Account</button>
         </form>
         
@@ -227,77 +218,6 @@
             Already have an account? <a href="/login">Sign in here</a>
         </div>
     </div>
-
-    <script>
-        document.getElementById('registerForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Clear previous error messages
-            document.getElementById('emailError').textContent = '';
-            document.getElementById('passwordError').textContent = '';
-            document.getElementById('confirmPasswordError').textContent = '';
-            
-            // Get form values
-            const fullName = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const terms = document.getElementById('terms').checked;
-            
-            let isValid = true;
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                document.getElementById('emailError').textContent = 'Please enter a valid email address';
-                isValid = false;
-            }
-            
-            // Password validation
-            
-            
-            // Confirm password validation
-            if (password !== confirmPassword) {
-                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
-                isValid = false;
-            }
-            
-            // Check if all fields are filled and terms are accepted
-            if (!fullName || !email || !password || !confirmPassword || !terms) {
-                alert('Please fill in all fields and accept the terms');
-                isValid = false;
-            }
-            
-            if (isValid) {
-                alert('Registration successful!\nWelcome ' + fullName + '!');
-            }
-        });
-
-        // Real-time password confirmation check
-        document.getElementById('confirmPassword').addEventListener('input', function() {
-            const password = document.getElementById('password').value;
-            const confirmPassword = this.value;
-            const errorDiv = document.getElementById('confirmPasswordError');
-            
-            if (confirmPassword && password !== confirmPassword) {
-                errorDiv.textContent = 'Passwords do not match';
-            } else {
-                errorDiv.textContent = '';
-            }
-        });
-
-        // Email validation on blur
-        document.getElementById('email').addEventListener('blur', function() {
-            const email = this.value;
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const errorDiv = document.getElementById('emailError');
-            
-            if (email && !emailRegex.test(email)) {
-                errorDiv.textContent = 'Please enter a valid email address';
-            } else {
-                errorDiv.textContent = '';
-            }
-        });
-    </script>
+    </form>
 </body>
 </html>

@@ -1,23 +1,24 @@
-const makeBlogTable = (sequelize, Datatypes)=>{
-const blog =sequelize.define("blog",{
-    title: {
-        type : Datatypes.STRING
-    },
-    subtitle:{
-        type: Datatypes.STRING
-    },
-    description: {
-        type: Datatypes.STRING
-    },
-    author : {
-        type : Datatypes.STRING
-    },
-    published_date : {
-        type : Datatypes.STRING
-    } 
-})
-return blog
+const { DataTypes } = require("sequelize");
+
+const makeBlogTable = (sequelize, DataTypes)=>{
+    const blog = sequelize.define("blog", {
+        title:{
+            type: DataTypes.STRING
+        },
+        subtitle:{
+            type : DataTypes.STRING
+        },
+        content :{
+            type : DataTypes.STRING
+        },
+        author_name: {
+            type : DataTypes.STRING
+        },
+        publish_date : {
+            type : DataTypes.STRING
+        }
+    })
+    return blog
 }
-
-
+    
 module.exports = makeBlogTable

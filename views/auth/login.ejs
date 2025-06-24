@@ -143,6 +143,7 @@
     </style>
 </head>
 <body>
+    <form action="/login" method="post">
     <div class="login-container">
         <div class="login-header">
             <h2>Welcome Back</h2>
@@ -175,20 +176,6 @@
             Don't have an account? <a href="/register">Sign up here</a>
         </div>
     </div>
-
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            if (email && password) {
-                alert('Login form submitted!\nEmail: ' + email);
-            } else {
-                alert('Please fill in all fields');
-            }
-        });
-    </script>
+    </form>
 </body>
 </html>
